@@ -1,10 +1,12 @@
 from flask import render_template
-from app import app
+from flask.ext.sqlalchemy import get_debug_queries
+from app import app, db
+from .models import *
 
 @app.route('/')
-@app.route('/index')
 def index():
-    user = {'nickname': 'Benoît-Xavier'}
+    authors = Author.query.all()
+    test = Author.query.filter(Author.aut_last_name.like('%SIMENON%')).first()
     return render_template('index.html',
                            title='Accueil',
-                           user=user)
+                           authors=authors, test=test)
