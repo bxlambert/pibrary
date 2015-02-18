@@ -1,0 +1,17 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - Pibliothèque</title>
+    {% else %}
+    <title>Bienvenue dans la pibliothèque</title>
+    {% endif %}
+  </head>
+  <body>
+    <div><a href="/">Pibliothèque</a></div>
+    <div><a href="/consulter">Consulter</a></div>
+    <div><a href="/mise-a-jour">Mettre à jour</a></div>
+    <div><a href="/statistiques">Statistiques</a></div>
+    <hr>
+    {% block content %}{% endblock %}
+  </body>
+</html>
