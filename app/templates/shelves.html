@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Rayons ({{ nb_shelves }})</h1>
+    <div>
+        {% for shelf in shelves %}
+            <div>
+                {{ shelf.shl_label }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,16 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>Bienvenue dans la pibliothèque !</h1>
-
-    <div>Auteur vedette: {{ test.aut_first_name }} {{ test.aut_last_name }}.</div>
-
-    <br />
-    <div>
-        Liste des auteurs :
-        <ul>
-        {% for author in authors %}
-            <li>{{ author.aut_last_name }}, {{ author.aut_first_name }}</li>
-        {% endfor %}
-        </ul>
-    </div>
+    Parcourir la pibliothèque:
+    <ul>
+        <li>par <a href="{{ url_for('authors') }}">auteur</a></li>
+        <li>par <a href="/livres">livre</a></li>
+        <li>par <a href="/mots-cle">mot clé</a></li>
+        <li>par <a href="/genres">genre</a></li>
+        <li>par <a href="/rayons">rayon</a></li>
+    </ul>
 {% endblock %}

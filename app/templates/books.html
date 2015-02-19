@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Livres ({{ nb_books }})</h1>
+    <div>
+        {% for book in books %}
+            <div>
+                {{ book.boo_main_title }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
