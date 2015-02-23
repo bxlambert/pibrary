@@ -1,19 +1,56 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Pibliothèque</title>
+        <title>{{ title }} - Πbliothèque</title>
         {% else %}
-        <title>Pibliothèque</title>
+        <title>Πbliothèque</title><!-- Ππ -->
         {% endif %}
+        <link rel="icon" href="{{ url_for('static', filename='img/pibliotheque.ico') }}">
+
+        <!-- Bootstrap core CSS -->
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+
+        <!-- Custom style. -->
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" rel="stylesheet">
     </head>
+
     <body>
-        <div>
-            <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/pibliotheque.png') }}" /></a>
-            <a href="{{ url_for('index') }}">Consulter</a> |
-            <a href="/mise-a-jour">Modifier</a> |
-            <a href="/statistiques">Statistiques</a>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ url_for('index') }}">
+                        <img alt="Πbliothèque" src="{{ url_for('static', filename='img/pibliotheque.png') }}">
+                    </a>
+                </div>
+                <div style="height: 1px;" aria-expanded="false" id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{{ url_for('index') }}">Consulter</a></li>
+                        <li><a href="#">Mettre à jour</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Statistiques</a></li>
+                        <li><a href="#">A propos</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
+            {% block content %}{% endblock %}
+
+            <footer>
+                <p>Πbliothèque, par <a href="https://github.com/bxlambert">Benoît-Xavier</a>.</p>
+            </footer>
         </div>
-        <hr>
-        {% block content %}{% endblock %}
+
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}" rel="stylesheet"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/ie10-viewport-bug-workaround.js') }}"></script>
     </body>
 </html>

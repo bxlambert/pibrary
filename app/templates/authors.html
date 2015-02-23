@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Auteurs ({{ nb_authors }})</h1>
+    <h1>Auteurs <small>({{ nb_authors }})</small></h1>
     <div>
         {% for author in authors %}
             <div>
                 <a href="{{ url_for('author', author_key=author.aut_key) }}">
-                {{ author.aut_last_name }}, {{ author.aut_first_name }}</a>
+                    {% if author.aut_first_name != None %}
+                    {{ author.aut_last_name }}, {{ author.aut_first_name }}
+                    {% else %}
+                    {{ author.aut_last_name }}
+                    {% endif %}
+                </a>
             </div>
         {% endfor %}
     </div>

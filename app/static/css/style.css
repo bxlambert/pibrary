@@ -1,0 +1,119 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans');
+
+body{
+    background-image: url("../img/livre-flou.jpg");
+    background-attachment: fixed;
+    padding-top: 55px;
+    font-family: "Open sans", Arial, sans-serif;
+}
+
+h1, h2, h3, h4{
+    color: #5F9EA0;
+}
+
+h1{
+    font-size: 42px;
+    margin-top: 42px;
+    line-height: 1.2em;
+}
+
+h2{
+    font-size: 36px;
+    padding: 2px 0 2px 0;
+    margin-top: 42px;
+    border-bottom: 1px solid #5F9EA0;
+}
+
+h3{
+    font-size: 24px;
+    margin-top: 42px;
+}
+
+body>.container{
+    border-left: 1px solid #E7E7E7;
+    border-right: 1px solid #E7E7E7;
+    border-bottom: 1px solid #E7E7E7;
+    background-color: #FFFFFF;
+}
+
+.text-16{
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.text-13{
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.gray-text{
+    color: #666;
+}
+
+.navbar-brand{
+    padding: 0;
+}
+
+.navbar-brand img{
+    padding: 4px 0 4px 4px;
+    margin-left: 10px;
+    margin-right: 20px;
+    height: 70px;
+}
+
+.navbar{
+    border-top: 4px solid #5F9EA0;
+}
+
+.navbar ul{
+    text-transform: uppercase;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover{
+    color: #5F9EA0;
+}
+
+.no-link{
+    color: #CCC;
+}
+
+.anchor:before{
+    display: block;
+    content: " ";
+    margin-top: -55px;
+    height: 55px;
+    visibility: hidden;
+}
+
+.sidebar-module {
+    padding: 15px;
+    margin: 0 0 15px;
+}
+
+.sidebar-module-inset {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+    margin-bottom: 0;
+}
+
+footer {
+    padding: 40px 0;
+    color: #999;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e5e5e5;
+}
+
+.main-content{
+    margin-bottom: 30px;
+}

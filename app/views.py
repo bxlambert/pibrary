@@ -5,7 +5,14 @@ from .models import *
 
 @app.route('/')
 def index():
-    return render_template('index.html', title='Accueil')
+    nb_authors = Author.query.count()
+    nb_books = Book.query.count()
+    genres = Genre.query.filter().all()
+    return render_template('index.html',
+                            title='Accueil',
+                            nb_authors=nb_authors,
+                            nb_books=nb_books,
+                            genres=genres)
 
 @app.route('/auteurs')
 def authors():

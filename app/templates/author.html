@@ -1,4 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+    {% if author.aut_first_name != None %}
     <h1>{{ author.aut_last_name }}, {{ author.aut_first_name }}</h1>
+    {% else %}
+    <h1>{{ author.aut_last_name }}</h1>
+    {% endif %}
 {% endblock %}
