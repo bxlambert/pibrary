@@ -1,8 +1,10 @@
 # Πbrary / Πbliotheque
 
-This is small personnal project to host a library management application on a raspberry pi.
+This is small and personal library management application, to be hosted on a raspberry pi.
 
 
 ## License
 
 The code is released under the MIT (Expat) license. See [LICENSE](LICENSE) for more information.
+
+The database is not provided...
