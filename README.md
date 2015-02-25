@@ -1,4 +1,4 @@
-# pibliotheque (pibrary)
+# Πbrary / Πbliotheque
 
 This is small personnal project to host a library management application on a raspberry pi.
 
