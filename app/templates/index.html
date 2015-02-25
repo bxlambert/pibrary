@@ -1,48 +1,26 @@
 {% extends "base.html" %}
+{% set nav_page = 'consulter' %}
 {% block content %}
     <h1>Consulter la Πbliothèque</h1>
+    <p>La Πbliothèque peut être parcourue entièrement en navigant de lien en lien.</p>
+    <p>Une recherche, simple ou avancée, permet de retrouver tous les objets de la Πbliothèque</p>
+    <h3>Auteurs <small>({{ nb_authors }})</small></h3>
+    <ul>
+        <li>Parcourir les <a href="{{ url_for('authors') }}">auteurs</a> par ordre alphabétique</li>
+        <li>Lettre par lettre: </li>
+    </ul>
 
-    <div class="row">
-        <div class="col-sm-8 text-16 gray-text main-content">
-          <p>La Πbliothèque peut être parcourue entièrement en navigant de lien en lien.</p>
-          <p>Une recherche, simple ou avancée, permet de retrouver tous les objets de la Πbliothèque</p>
-          <h3>Auteurs <small>({{ nb_authors }})</small></h3>
-          <ul>
-              <li>Parcourir les <a href="{{ url_for('authors') }}">auteurs</a> par ordre alphabétique</li>
-              <li>Lettre par lettre: </li>
-          </ul>
+    <h3>Livres <small>({{ nb_books }})</small></h3>
+    <ul>
+        <li>Parcourir les <a href="#">livres</a> par ordre alphabétique</li>
+        <li>Lettre par lettre: </li>
+    </ul>
 
-          <h3>Livres <small>({{ nb_books }})</small></h3>
-          <ul>
-              <li>Parcourir les <a href="#">livres</a> par ordre alphabétique</li>
-              <li>Lettre par lettre: </li>
-          </ul>
-
-          <h3>Autres</h3>
-          <ul>
-              <li>Parcourir par <a href="{{ url_for('genres') }}">genre</a></li>
-              <li>Parcourir par <a href="#">langue</a></li>
-              <li>Parcourir par <a href="#">mot-clé</a></li>
-              <li>Parcourir par <a href="{{ url_for('shelves') }}">rayon</a></li>
-          </ul>
-
-        </div> <!-- main-content. -->
-
-        <div class="col-sm-4 blog-sidebar">
-            <div class="sidebar-module sidebar-module-inset">
-                <h4>Recherche</h4>
-                <div class=" text-16 gray-text">
-                    ...
-                </div>
-            </div>
-            <div class="sidebar-module">
-                <h4>Genres</h4>
-                <ul class="list-unstyled text-16 gray-text">
-                    {% for genre in genres %}
-                    <li><a href="#">{{ genre.gnr_label }} </a><small>(2)</small></li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-      </div>
+    <h3>Autres</h3>
+    <ul>
+        <li>Parcourir par <a href="{{ url_for('genres') }}">genre</a></li>
+        <li>Parcourir par <a href="#">langue</a></li>
+        <li>Parcourir par <a href="#">mot-clé</a></li>
+        <li>Parcourir par <a href="{{ url_for('shelves') }}">rayon</a></li>
+    </ul>
 {% endblock %}

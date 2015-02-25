@@ -16,6 +16,9 @@
 
     <body>
         <nav class="navbar navbar-default navbar-fixed-top">
+            {% if nav_page == nul %}
+            {%set nav_page = 'consulter' %}
+            {% endif %}
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -30,20 +33,59 @@
                 </div>
                 <div style="height: 1px;" aria-expanded="false" id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        {% if nav_page == 'consulter' %}
                         <li class="active"><a href="{{ url_for('index') }}">Consulter</a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('index') }}">Consulter</a></li>
+                        {% endif %}
+                        {% if nav_page == 'mettre-a-jour' %}
+                        <li class="active"><a href="#">Mettre à jour</a></li>
+                        {% else %}
                         <li><a href="#">Mettre à jour</a></li>
+                        {% endif %}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        {% if nav_page == 'statistiques' %}
+                        <li class="active"><a href="#">Statistiques</a></li>
+                        {% else %}
                         <li><a href="#">Statistiques</a></li>
+                        {% endif %}
+                        {% if nav_page == 'a-propos' %}
+                        <li class="active"><a href="#">A propos</a></li>
+                        {% else %}
                         <li><a href="#">A propos</a></li>
+                        {% endif %}
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
 
         <div class="container">
-            {% block content %}{% endblock %}
-
+            <div class="row">
+                <div class="col-sm-8 text-16 gray-text main-content">
+                    {% block content %}{% endblock %}
+                </div>
+                <div class="col-sm-4 blog-sidebar">
+                    <div class="sidebar-module sidebar-module-inset">
+                        {% block search %}
+                            <h4>Recherche</h4>
+                            <div class=" text-16 gray-text">
+                                ...
+                            </div>
+                        {% endblock %}
+                    </div>
+                    <div class="sidebar-module">
+                        {% block sidebar %}
+                            <h4>Genres</h4>
+                            <ul class="list-unstyled text-16 gray-text">
+                                {% for genre in sidebar_genres %}
+                                <li><a href="#">{{ genre.gnr_label }} </a><small>(2)</small></li>
+                                {% endfor %}
+                            </ul>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
             <footer>
                 <p>Πbliothèque, par <a href="https://github.com/bxlambert">Benoît-Xavier</a>.</p>
             </footer>
