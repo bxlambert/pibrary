@@ -39,7 +39,8 @@ def author(author_key):
 
 @app.route('/livres')
 def books():
-    books = Book.query.all()
+    books = Title.query.join(Book).filter(Title.tit_id == Book.boo_main_title)\
+            .order_by(Title.tit_title).all()
     nb_books = len(books)
     return render_sidebar_template('books.html', title='Livres',
                             nb_books=nb_books, books=books)
