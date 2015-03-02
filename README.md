@@ -1,4 +1,4 @@
-# Πbrary / Πbliotheque
+# Πbrary / Πbliothèque
 
 This is small and personal library management application, to be hosted on a raspberry pi.
 
@@ -7,4 +7,4 @@ This is small and personal library management application, to be hosted on a ras
 
 The code is released under the MIT (Expat) license. See [LICENSE](LICENSE) for more information.
 
-The database is not provided...
+Please note that no database is provided...
