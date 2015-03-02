@@ -12,7 +12,7 @@
 
     <h3>Livres <small>({{ nb_books }})</small></h3>
     <ul>
-        <li>Parcourir les <a href="#">livres</a> par ordre alphabétique</li>
+        <li>Parcourir les <a href="{{ url_for('books') }}">livres</a> par ordre alphabétique</li>
         <li>Lettre par lettre: </li>
     </ul>
 
@@ -20,7 +20,7 @@
     <ul>
         <li>Parcourir par <a href="{{ url_for('genres') }}">genre</a></li>
         <li>Parcourir par <a href="#">langue</a></li>
-        <li>Parcourir par <a href="#">mot-clé</a></li>
+        <!--<li>Parcourir par <a href="#">mot-clé</a></li>-->
         <li>Parcourir par <a href="{{ url_for('shelves') }}">rayon</a></li>
     </ul>
 {% endblock %}
