@@ -79,7 +79,7 @@
                             <h4>Genres</h4>
                             <ul class="list-unstyled text-16 gray-text">
                                 {% for genre in sidebar_genres %}
-                                <li><a href="#">{{ genre.gnr_label }} </a><small>(2)</small></li>
+                                <li><a href="#">{{ genre.gnr_label }} </a><small>({{ genre.count_genre }})</small></li>
                                 {% endfor %}
                             </ul>
                         {% endblock %}

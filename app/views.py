@@ -5,7 +5,7 @@ from .models import *
 
 
 def render_sidebar_template(template_name, **kwargs):
-    sidebar_genres = Genre.query.filter().all()
+    sidebar_genres = db.session.query(Genre.gnr_label, db.func.count(Genre.gnr_label).label('count_genre')).join(Title, Genre.title_genre).join(Book, Title.tit_book_main).group_by(Genre.gnr_label).all()
     return render_template(template_name, sidebar_genres=sidebar_genres, **kwargs)
 
 
