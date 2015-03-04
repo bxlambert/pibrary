@@ -74,12 +74,14 @@
                             </div>
                         {% endblock %}
                     </div>
+                </div>
+                <div class="col-sm-4 blog-sidebar hidden-xs">
                     <div class="sidebar-module">
                         {% block sidebar %}
                             <h4>Genres</h4>
                             <ul class="list-unstyled text-16 gray-text">
                                 {% for genre in sidebar_genres %}
-                                <li><a href="#">{{ genre.gnr_label }} </a><small>({{ genre.count_genre }})</small></li>
+                                <li><a href="#">{{ genre.gnr_label }}&nbsp;</a><small>({{ genre.count_genre }})</small></li>
                                 {% endfor %}
                             </ul>
                         {% endblock %}
