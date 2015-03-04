@@ -107,11 +107,12 @@ body>.container{
 }
 
 footer {
-    padding: 40px 0;
+    padding-top: 20px;
+    padding-bottom: 10px;
     color: #999;
     text-align: center;
-    background-color: #f9f9f9;
-    border-top: 1px solid #e5e5e5;
+    background-color: #F8F8F8;
+    border-top: 1px solid #E5E5E5;
 }
 
 .main-content{
