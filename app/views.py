@@ -29,11 +29,17 @@ def authors():
 @app.route('/auteurs/<author_key>')
 def author(author_key):
     author = Author.query.filter(Author.aut_key == author_key).first()
+    books = Title.query.join(Book).join(Author, Title.author_title).filter(Title.tit_id == Book.boo_main_title, Author.aut_id == author.aut_id).order_by(Title.tit_title).all()
+    languages = Language.query.join(Title).join(Author, Title.author_title).filter(Author.aut_id == author.aut_id).all()
+    genres = Genre.query.join(Title, Genre.title_genre).join(Author, Title.author_title).filter(Author.aut_id == author.aut_id).all()
     if author is not None:
         title = author.aut_last_name.capitalize()
         return render_sidebar_template('author.html',
                                 title=title,
-                                author=author)
+                                author=author,
+                                books=books,
+                                languages=languages,
+                                genres=genres)
     else:
         return render_template('404.html'), 404
 
