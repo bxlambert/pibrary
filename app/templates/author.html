@@ -36,8 +36,8 @@
         </tr>
         {% endif %}
 
-        {% if languages|length > 1 %}
         <tr>
+            {% if languages|length > 1 %}
             <td>Langues d'écriture</td>
             <td>
                 {% for language in languages %}
@@ -51,11 +51,11 @@
                 {{ language.lng_label }}&nbsp;
                 {% endfor %}
             </td>
+            {% endif %}
         </tr>
-        {% endif %}
 
-        {% if genres|length > 1 %}
         <tr>
+            {% if genres|length > 1 %}
             <td>Genres</td>
             <td>
                 {% for genre in genres %}
@@ -69,11 +69,11 @@
                 <span class="label label-primary">{{ genre.gnr_label }}</span>&nbsp;
                 {% endfor %}
             </td>
+            {% endif %}
         </tr>
-        {% endif %}
     </table>
 
-    <h2>Livres</h2>
+    <h2>Livres <small>({{ books|length }})</small></h2>
     <ul>
     {% for book in books %}
         <li><a href="">{{ book.tit_title }}</a></li>
