@@ -107,6 +107,11 @@ body>.container{
     margin-bottom: 0;
 }
 
+.label > a, a:hover {
+    color: #FFF;
+    text-decoration: none;
+}
+
 footer {
     padding-top: 20px;
     padding-bottom: 10px;

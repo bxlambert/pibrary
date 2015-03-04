@@ -38,38 +38,30 @@
 
         <tr>
             {% if languages|length > 1 %}
-            <td>Langues d'écriture</td>
-            <td>
-                {% for language in languages %}
-                {{ language.lng_label }}&nbsp;
-                {% endfor %}
-            </td>
+            <td>Langues</td>
             {% else %}
-            <td>Langue d'écriture</td>
+            <td>Langue</td>
+            {% endif %}
             <td>
                 {% for language in languages %}
-                {{ language.lng_label }}&nbsp;
+                <a href="">{{ language.lng_label }}</a>&nbsp;
                 {% endfor %}
             </td>
-            {% endif %}
         </tr>
 
         <tr>
             {% if genres|length > 1 %}
             <td>Genres</td>
-            <td>
-                {% for genre in genres %}
-                <span class="label label-primary">{{ genre.gnr_label }}</span>&nbsp;
-                {% endfor %}
-            </td>
             {% else %}
             <td>Genre</td>
+            {% endif %}
             <td>
                 {% for genre in genres %}
-                <span class="label label-primary">{{ genre.gnr_label }}</span>&nbsp;
+                <span class="label label-primary">
+                    <a href="">{{ genre.gnr_label }}</a>
+                </span>&nbsp;
                 {% endfor %}
             </td>
-            {% endif %}
         </tr>
     </table>
 
