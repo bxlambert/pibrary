@@ -62,10 +62,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 text-16 gray-text main-content">
-                    {% block content %}{% endblock %}
-                </div>
-                <div class="col-sm-4 blog-sidebar">
+                <div class="col-sm-4 col-sm-push-8 blog-sidebar">
                     <div class="sidebar-module sidebar-module-inset">
                         {% block search %}
                             <h4>Recherche</h4>
@@ -74,9 +71,8 @@
                             </div>
                         {% endblock %}
                     </div>
-                </div>
-                <div class="col-sm-4 blog-sidebar hidden-xs">
-                    <div class="sidebar-module">
+
+                    <div class="sidebar-module hidden-xs">
                         {% block sidebar %}
                             <h4>Genres</h4>
                             <ul class="list-unstyled text-16 gray-text">
@@ -86,6 +82,9 @@
                             </ul>
                         {% endblock %}
                     </div>
+                </div>
+                <div class="col-sm-8 col-sm-pull-4 text-16 gray-text main-content">
+                    {% block content %}{% endblock %}
                 </div>
             </div>
             <div class="row">
