@@ -2,12 +2,12 @@
 {% set nav_page = 'consulter' %}
 {% block content %}
     {% if author.aut_first_name != None %}
-    <h1>{{ author.aut_last_name }}, {{ author.aut_first_name }}</h1>
+    <h2>{{ author.aut_last_name }}, {{ author.aut_first_name }}</h2>
     {% else %}
-    <h1>{{ author.aut_last_name }}</h1>
+    <h2>{{ author.aut_last_name }}</h2>
     {% endif %}
 
-    <h2>L'auteur</h2>
+    <h3>L'auteur</h3>
     <table class="table table-condensed">
         {% if author.aut_sex != '' %}
         <tr>
@@ -73,7 +73,7 @@
         </tr>
     </table>
 
-    <h2>Livres <small>({{ books|length }})</small></h2>
+    <h3>Livres <small>({{ books|length }})</small></h3>
     <ul>
     {% for book in books %}
         <li><a href="">{{ book.tit_title }}</a></li>
