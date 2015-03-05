@@ -35,7 +35,7 @@ def authors():
 
 @app.route('/auteurs/<author_key>')
 def author(author_key):
-    author = Author.query.filter(Author.aut_key == author_key).first()
+    author = Author.query.filter(Author.aut_key == author_key).first_or_404()
     books = Title.query.join(Book).join(Author, Title.author_title).filter(Title.tit_id == Book.boo_main_title, Author.aut_id == author.aut_id).order_by(Title.tit_title).all()
     languages = Language.query.join(Title).join(Author, Title.author_title).filter(Author.aut_id == author.aut_id).all()
     genres = Genre.query.join(Title, Genre.title_genre).join(Author, Title.author_title).filter(Author.aut_id == author.aut_id).all()
