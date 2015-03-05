@@ -107,7 +107,7 @@ body>.container{
     margin-bottom: 0;
 }
 
-.label > a, a:hover {
+.label > a, .label > a:hover {
     color: #FFF;
     text-decoration: none;
 }
