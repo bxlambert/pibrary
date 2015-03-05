@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from flask import render_template, url_for, redirect, request
 from flask.ext.sqlalchemy import get_debug_queries
 from app import app, db
@@ -12,7 +13,27 @@ def render_sidebar_template(template_name, **kwargs):
 @app.route('/')
 def index():
     nb_authors = Author.query.count()
+    authors = db.session.query(db.func.substr(db.func.upper(Author.aut_last_name), 1, 1).label('first_letter')).group_by('first_letter').all()
+    aut_first_letters = OrderedDict()
+    for letter in('ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
+        aut_first_letters[letter] = False
+    for letter in authors:
+        aut_first_letters[letter[0]] = True
+
     nb_books = Book.query.count()
+    books = db.session.query(db.func.substr(db.func.upper(Title.tit_title), 1, 1).label('first_letter')).join(Book).group_by('first_letter').all()
+    boo_first_letters = OrderedDict()
+    for letter in('0ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
+        if letter == '0':
+            boo_first_letters['[0-9]'] = False
+        else:
+            boo_first_letters[letter] = False
+    for letter in books:
+        if letter[0] in('0123456789'):
+            boo_first_letters['[0-9]'] = True
+        else:
+            boo_first_letters[letter[0]] = True
+
     nb_genres = Genre.query.count()
     nb_keywords = Keyword.query.count()
     nb_languages = Language.query.count()
@@ -20,7 +41,9 @@ def index():
     return render_sidebar_template('index.html',
                             title='Accueil',
                             nb_authors=nb_authors,
+                            aut_first_letters=aut_first_letters,
                             nb_books=nb_books,
+                            boo_first_letters=boo_first_letters,
                             nb_genres=nb_genres,
                             nb_keywords=nb_keywords,
                             nb_languages=nb_languages,

@@ -4,11 +4,21 @@
     <h2>Livres <small>({{ books|length }})</small></h2>
 
     <div class="text-16 gray-text">Classement par ordre alphabétique.</div>
-    <div>
+        {% set current_letter = '' %}
         {% for book in books %}
-            <div>
-                <a href="{{ url_for('book', book_key=book.tit_key) }}">{{ book.tit_title }}</a>
+            {% if book.tit_title[0] in('0123456789') %}
+            {% set first_letter = '[0-9]' %}
+            {% else %}
+            {% set first_letter = book.tit_title[0] %}
+            {% endif %}
+            {% if first_letter != current_letter %}
+                {% set current_letter = first_letter %}
+                <div class="anchor" id="{{first_letter}}">
+                    <h3>- {{ first_letter }} -</h3></a>
+                </div>
+            {% endif %}
+            <div class="text-16 gray-text">
+                <a href="{{ url_for('book', book_key=book.tit_key) }}">{{ book.tit_title.capitalize() }}</a>
             </div>
         {% endfor %}
-    </div>
 {% endblock %}

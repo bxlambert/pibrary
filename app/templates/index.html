@@ -7,13 +7,29 @@
     <h3>Auteurs <small>({{ nb_authors }})</small></h3>
     <ul>
         <li>Parcourir les <a href="{{ url_for('authors') }}">auteurs</a> par ordre alphabétique</li>
-        <li>Lettre par lettre: </li>
+        <li>Lettre par lettre:
+            {% for letter, is_present in aut_first_letters.items(): %}
+                {% if is_present %}
+                    &nbsp&nbsp<a href="{{ url_for('authors', _anchor=letter) }}">{{ letter }}</a>
+                {% else %}
+                    &nbsp&nbsp<span class="no-link">{{ letter }}</span>
+                {% endif %}
+            {% endfor %}
+        </li>
     </ul>
 
     <h3>Livres <small>({{ nb_books }})</small></h3>
     <ul>
         <li>Parcourir les <a href="{{ url_for('books') }}">livres</a> par ordre alphabétique</li>
-        <li>Lettre par lettre: </li>
+        <li>Lettre par lettre:
+            {% for letter, is_present in boo_first_letters.items(): %}
+                {% if is_present %}
+                    &nbsp&nbsp<a href="{{ url_for('books', _anchor=letter) }}">{{ letter }}</a>
+                {% else %}
+                    &nbsp&nbsp<span class="no-link">{{ letter }}</span>
+                {% endif %}
+            {% endfor %}
+        </li>
     </ul>
 
     <h3>Autres</h3>
