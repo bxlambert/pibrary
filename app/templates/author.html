@@ -65,7 +65,11 @@
         </tr>
     </table>
 
+    {% if books|length > 1 %}
     <h3>Livres <small>({{ books|length }})</small></h3>
+    {% else %}
+    <h3>Livre</h3>
+    {% endif %}
     <ul>
     {% for book in books %}
         <li><a href="">{{ book.tit_title }}</a></li>
