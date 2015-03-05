@@ -18,9 +18,20 @@
 
     <h3>Autres</h3>
     <ul>
-        <li>Parcourir par <a href="{{ url_for('genres') }}">genre</a></li>
-        <li>Parcourir par <a href="#">langue</a></li>
-        <!--<li>Parcourir par <a href="#">mot-clé</a></li>-->
-        <li>Parcourir par <a href="{{ url_for('shelves') }}">rayon</a></li>
+        {% if nb_genres > 1 %}
+        <li>Parcourir les <a href="{{ url_for('genres') }}">{{ nb_genres }} genres</a></li>
+        {% endif %}
+
+        {% if nb_languages > 1 %}
+        <li>Parcourir les <a href="#">{{ nb_languages }} langues</a></li>
+        {% endif %}
+
+        {% if nb_keywords > 1 %}
+        <li>Parcourir les <a href="#">{{ nb_keywords }} mot-clés</a></li>
+        {% endif %}
+
+        {% if nb_shelves > 1 %}
+        <li>Parcourir les <a href="#">{{ nb_shelves }} rayons</a></li>
+        {% endif %}
     </ul>
 {% endblock %}

@@ -13,11 +13,18 @@ def render_sidebar_template(template_name, **kwargs):
 def index():
     nb_authors = Author.query.count()
     nb_books = Book.query.count()
+    nb_genres = Genre.query.count()
+    nb_keywords = Keyword.query.count()
+    nb_languages = Language.query.count()
+    nb_shelves = Shelf.query.count()
     return render_sidebar_template('index.html',
                             title='Accueil',
                             nb_authors=nb_authors,
                             nb_books=nb_books,
-                            genres=genres)
+                            nb_genres=nb_genres,
+                            nb_keywords=nb_keywords,
+                            nb_languages=nb_languages,
+                            nb_shelves=nb_shelves)
 
 @app.route('/auteurs')
 def authors():
