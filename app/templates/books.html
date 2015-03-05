@@ -1,10 +1,13 @@
 {% extends "base.html" %}
+{% set nav_page = 'consulter' %}
 {% block content %}
-    <h1>Livres ({{ nb_books }})</h1>
+    <h2>Livres <small>({{ books|length }})</small></h2>
+
+    <div class="text-16 gray-text">Classement par ordre alphabétique.</div>
     <div>
         {% for book in books %}
             <div>
-                {{ book.tit_title }}
+                <a href="{{ url_for('book', book_key=book.tit_key) }}">{{ book.tit_title }}</a>
             </div>
         {% endfor %}
     </div>
