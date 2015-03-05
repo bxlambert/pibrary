@@ -31,7 +31,7 @@
         {% endif %}
 
         {% if nb_shelves > 1 %}
-        <li>Parcourir les <a href="#">{{ nb_shelves }} rayons</a></li>
+        <li>Parcourir les <a href="{{ url_for('shelves') }}">{{ nb_shelves }} rayons</a></li>
         {% endif %}
     </ul>
 {% endblock %}
