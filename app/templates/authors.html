@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% set nav_page = 'consulter' %}
 {% block content %}
-    <h1>Auteurs <small>({{ nb_authors }})</small></h1>
+    <h1>Auteurs <small>({{ authors|length }})</small></h1>
 
     <div class="text-16 gray-text">Classement par ordre alphabétique.</div>
         {% set current_letter = '' %}

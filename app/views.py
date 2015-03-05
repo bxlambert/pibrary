@@ -29,9 +29,7 @@ def index():
 @app.route('/auteurs')
 def authors():
     authors = Author.query.order_by(Author.aut_last_name).all()
-    nb_authors = len(authors)
-    return render_sidebar_template('authors.html', title='Auteurs',
-                            nb_authors=nb_authors, authors=authors)
+    return render_sidebar_template('authors.html', title='Auteurs', authors=authors)
 
 @app.route('/auteurs/<author_key>')
 def author(author_key):
@@ -68,16 +66,12 @@ def book(book_key):
 @app.route('/genres')
 def genres():
     genres = Genre.query.all()
-    nb_genres = len(genres)
-    return render_sidebar_template('genres.html', title='Genres',
-                            nb_genres=nb_genres, genres=genres)
+    return render_sidebar_template('genres.html', title='Genres', genres=genres)
 
 @app.route('/rayons')
 def shelves():
     shelves = Shelf.query.all()
-    nb_shelves = len(shelves)
-    return render_sidebar_template('shelves.html', title='Rayons',
-                            nb_shelves=nb_shelves, shelves=shelves)
+    return render_sidebar_template('shelves.html', title='Rayons', shelves=shelves)
 
 @app.errorhandler(404)
 def not_found_error(error):

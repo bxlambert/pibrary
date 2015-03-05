@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Rayons <small>({{ nb_shelves }})</small></h1>
+    <h1>Rayons <small>({{ shelves|length }})</small></h1>
     <div>
         {% for shelf in shelves %}
             <div>
