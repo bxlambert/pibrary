@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% set nav_page = 'consulter' %}
+{% block content %}
+    <h2>Langues <small>({{ languages|length }})</small></h2>
+
+    <ul class="text-16 gray-text">
+        {% for language in languages %}
+        <li><a href="{{ url_for('language', language_key=language.lng_label) }}">{{ language.lng_label }}&nbsp;</a><small>({{ language.count_language }})</small></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
