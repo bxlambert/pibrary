@@ -1,11 +1,11 @@
 {% extends "base.html" %}
+{% set nav_page = 'consulter' %}
 {% block content %}
-    <h1>Genres <small>({{ genres|length }})</small></h1>
-    <div>
-        {% for genre in genres %}
-            <div>
-                {{ genre.gnr_label }}
-            </div>
+    <h2>Genres <small>({{ sidebar_genres|length }})</small></h2>
+
+    <ul class="text-16 gray-text">
+        {% for genre in sidebar_genres %}
+        <li><a href="{{ url_for('genre', genre_key=genre.gnr_label) }}">{{ genre.gnr_label }}&nbsp;</a><small>({{ genre.count_genre }})</small></li>
         {% endfor %}
-    </div>
+    </ul>
 {% endblock %}

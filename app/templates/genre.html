@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% set nav_page = 'consulter' %}
+{% block content %}
+    <h2>
+        Genre: {{ genre.gnr_label }}
+        {% if books|length > 1 %}
+        <small>({{ books|length }} livres)</small>
+        {% else %}
+        <small>(1 livre)</small>
+        {% endif %}
+    </h2>
+
+    <ul>
+    {% for book in books %}
+        <li><a href="{{ url_for('book', book_key=book.tit_key) }}">{{ book.tit_title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

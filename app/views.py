@@ -88,8 +88,18 @@ def book(book_key):
 
 @app.route('/genres')
 def genres():
-    genres = Genre.query.all()
-    return render_sidebar_template('genres.html', title='Genres', genres=genres)
+    # Attention: requires data from 'render_sidebar_template'.
+    return render_sidebar_template('genres.html', title='Genres')
+
+@app.route('/genres/<genre_key>')
+def genre(genre_key):
+    genre = Genre.query.filter(Genre.gnr_label == genre_key).first_or_404()
+    page_title = 'Genre: ' + genre.gnr_label.lower()
+    books = Title.query.join(Book).join(Genre, Title.genre_title).filter(Title.tit_id == Book.boo_main_title, Genre.gnr_id == genre.gnr_id).order_by(Title.tit_title).all()
+    return render_sidebar_template('genre.html',
+                                title=page_title,
+                                genre=genre,
+                                books=books)
 
 @app.route('/rayons')
 def shelves():
