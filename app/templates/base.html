@@ -43,6 +43,11 @@
                         {% else %}
                         <li><a href="#">Mettre à jour</a></li>
                         {% endif %}
+                        {% if nav_page == 'exporter' %}
+                        <li class="active"><a href="#">Exporter</a></li>
+                        {% else %}
+                        <li><a href="#">Exporter</a></li>
+                        {% endif %}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if nav_page == 'statistiques' %}
