@@ -84,7 +84,7 @@ def books():
 def book(book_key):
     book = Title.query.join(Book).filter(Title.tit_id == Book.boo_main_title,
             Title.tit_key == book_key).order_by(Title.tit_title).first_or_404()
-    #authors = Author.query.join(Title, Author.title_author).filter(Author. == author_key).all()
+    #authors = Author.query.join(Title, Author.title_author).filter(Author.aut_key == book.tit_author).all()
     title = book.tit_title.capitalize()
     return render_sidebar_template('book.html',
                                 book=book)
@@ -124,6 +124,11 @@ def language(language_key):
 def shelves():
     shelves = Shelf.query.all()
     return render_sidebar_template('shelves.html', title='Rayons', shelves=shelves)
+
+@app.route('/a-propos')
+def about():
+    return render_template('about.html', title='A propos')
+
 
 @app.errorhandler(404)
 def not_found_error(error):

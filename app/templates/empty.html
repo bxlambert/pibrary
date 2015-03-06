@@ -56,9 +56,9 @@
                         <li><a href="#">Statistiques</a></li>
                         {% endif %}
                         {% if nav_page == 'a-propos' %}
-                        <li class="active"><a href="#">A propos</a></li>
+                        <li class="active"><a href="{{ url_for('about') }}">A propos</a></li>
                         {% else %}
-                        <li><a href="#">A propos</a></li>
+                        <li><a href="{{ url_for('about') }}">A propos</a></li>
                         {% endif %}
                     </ul>
                 </div><!--/.nav-collapse -->
