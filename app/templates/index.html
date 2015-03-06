@@ -10,9 +10,9 @@
         <li>Lettre par lettre:
             {% for letter, is_present in aut_first_letters.items(): %}
                 {% if is_present %}
-                    &nbsp&nbsp<a href="{{ url_for('authors', _anchor=letter) }}">{{ letter }}</a>
+                    &nbsp;&nbsp;<a href="{{ url_for('authors', _anchor=letter) }}">{{ letter }}</a>
                 {% else %}
-                    &nbsp&nbsp<span class="no-link">{{ letter }}</span>
+                    &nbsp;&nbsp;<span class="no-link">{{ letter }}</span>
                 {% endif %}
             {% endfor %}
         </li>
@@ -24,9 +24,9 @@
         <li>Lettre par lettre:
             {% for letter, is_present in boo_first_letters.items(): %}
                 {% if is_present %}
-                    &nbsp&nbsp<a href="{{ url_for('books', _anchor=letter) }}">{{ letter }}</a>
+                    &nbsp;&nbsp;<a href="{{ url_for('books', _anchor=letter) }}">{{ letter }}</a>
                 {% else %}
-                    &nbsp&nbsp<span class="no-link">{{ letter }}</span>
+                    &nbsp;&nbsp;<span class="no-link">{{ letter }}</span>
                 {% endif %}
             {% endfor %}
         </li>
