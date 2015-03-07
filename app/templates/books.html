@@ -18,7 +18,7 @@
                 </div>
             {% endif %}
             <div class="text-16 gray-text">
-                <a href="{{ url_for('book', book_key=book.tit_key) }}">{{ book.tit_title.capitalize() }}</a>
+                <a href="{{ url_for('book', book_key=book.tit_key) }}">{{ book.tit_title }}</a>
             </div>
         {% endfor %}
 {% endblock %}
