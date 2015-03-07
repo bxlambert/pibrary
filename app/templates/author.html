@@ -44,7 +44,7 @@
             {% endif %}
             <td>
                 {% for language in languages %}
-                <a href="">{{ language.lng_label }}</a>&nbsp;
+                <a href="{{ url_for('language', language_key=language.lng_label) }}">{{ language.lng_label }}</a>&nbsp;
                 {% endfor %}
             </td>
         </tr>
