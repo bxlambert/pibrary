@@ -57,6 +57,7 @@ class Genre(db.Model):
 
     gnr_id = db.Column(db.String(40), primary_key=True)
     gnr_label = db.Column(db.String(40), nullable=False, unique=True)
+    gnr_key = db.Column(db.String(40), nullable=False, unique=True)
     gnr_title = db.relationship('Title', secondary=title_genre_table, backref='genre_title')
 
     def __repr__(self):
@@ -68,6 +69,7 @@ class Keyword(db.Model):
 
     kwd_id = db.Column(db.String(40), primary_key=True)
     kwd_label = db.Column(db.String(40), nullable=False, unique=True)
+    kwd_key = db.Column(db.String(40), nullable=False, unique=True)
     kwd_title = db.relationship('Title', secondary=title_keyword_table, backref='keyword_title')
 
     def __repr__(self):
@@ -80,6 +82,7 @@ class Language(db.Model):
     lng_id = db.Column(db.String(40), primary_key=True)
     lng_iso = db.Column(db.String(3))
     lng_label = db.Column(db.String(40), nullable=False)
+    lng_key = db.Column(db.String(40), nullable=False, unique=True)
     lng_title = db.relationship('Title', backref='title_language', lazy='dynamic')
 
     def __repr__(self):
@@ -121,6 +124,7 @@ class Shelf(db.Model):
 
     shl_id = db.Column(db.String(40), primary_key=True)
     shl_label = db.Column(db.String(40), nullable=False, unique=True)
+    shl_key = db.Column(db.String(40), nullable=False)
     shl_copy = db.relationship('Copy', backref='shelf_copy', lazy='dynamic')
 
     def __repr__(self):
@@ -132,6 +136,7 @@ class Publisher(db.Model):
 
     pub_id = db.Column(db.String(40), primary_key=True)
     pub_label = db.Column(db.String(40), nullable=False, unique=True)
+    pub_key = db.Column(db.String(40), nullable=False, unique=True)
     pub_book = db.relationship('Book', backref='publisher_book', lazy='dynamic')
 
     def __repr__(self):
