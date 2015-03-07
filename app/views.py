@@ -5,9 +5,6 @@ from app import app, db
 from .models import *
 
 
-def get_languages_nb():
-    return db.session.query(Language.lng_label, db.func.count(Language.lng_label).label('count_language')).join(Title, Language.lng_title).join(Book, Title.tit_book_main).group_by(Language.lng_label).all()
-
 def render_sidebar_template(template_name, **kwargs):
     sidebar_genres = db.session.query(Genre.gnr_label, Genre.gnr_key, db.func.count(Genre.gnr_label).label('count_genre')).join(Title, Genre.title_genre).join(Book, Title.tit_book_main).group_by(Genre.gnr_label, Genre.gnr_key).order_by(Genre.gnr_key).all()
     return render_template(template_name, sidebar_genres=sidebar_genres, **kwargs)
@@ -77,13 +74,13 @@ def author(author_key):
 @app.route('/livres')
 def books():
     books = Title.query.join(Book).filter(Title.tit_id == Book.boo_main_title)\
-            .order_by(Title.tit_title).all()
+            .order_by(Title.tit_key).all()
     return render_sidebar_template('books.html', title='Livres', books=books)
 
 @app.route('/livres/<book_key>')
 def book(book_key):
     book = Title.query.join(Book).filter(Title.tit_id == Book.boo_main_title,
-            Title.tit_key == book_key).order_by(Title.tit_title).first_or_404()
+            Title.tit_key == book_key).order_by(Title.tit_key).first_or_404()
     #authors = Author.query.join(Title, Author.title_author).filter(Author.aut_key == book.tit_author).all()
     title = book.tit_title.capitalize()
     return render_sidebar_template('book.html',
@@ -98,7 +95,7 @@ def genres():
 def genre(genre_key):
     genre = Genre.query.filter(Genre.gnr_key == genre_key).first_or_404()
     page_title = 'Genre: ' + genre.gnr_label.lower()
-    books = Title.query.join(Book).join(Genre, Title.genre_title).filter(Title.tit_id == Book.boo_main_title, Genre.gnr_id == genre.gnr_id).order_by(Title.tit_title).all()
+    books = Title.query.join(Book).join(Genre, Title.genre_title).filter(Title.tit_id == Book.boo_main_title, Genre.gnr_id == genre.gnr_id).order_by(Title.tit_key).all()
     return render_sidebar_template('genre.html',
                                 title=page_title,
                                 genre=genre,
@@ -107,14 +104,14 @@ def genre(genre_key):
 @app.route('/langues')
 def languages():
     languages = Language.query.order_by(Language.lng_label).all()
-    languages = db.session.query(Language.lng_label, Language.lng_key, db.func.count(Language.lng_label).label('count_language')).join(Title, Language.lng_title).join(Book, Title.tit_book_main).group_by(Language.lng_label, Language.lng_key).all()
+    languages = db.session.query(Language.lng_label, Language.lng_key, db.func.count(Language.lng_label).label('count_language')).join(Title, Language.lng_title).join(Book, Title.tit_book_main).group_by(Language.lng_label, Language.lng_key).order_by(Language.lng_key).all()
     return render_sidebar_template('languages.html', title='Langues', languages=languages)
 
 @app.route('/langues/<language_key>')
 def language(language_key):
     language = Language.query.filter(Language.lng_key == language_key).first_or_404()
     page_title = 'Langue: ' + language.lng_label.lower()
-    books = Title.query.join(Book).join(Language).filter(Title.tit_id == Book.boo_main_title, Language.lng_id == language.lng_id).order_by(Title.tit_title).all()
+    books = Title.query.join(Book).join(Language).filter(Title.tit_id == Book.boo_main_title, Language.lng_id == language.lng_id).order_by(Title.tit_key).all()
     return render_sidebar_template('language.html',
                                 title=page_title,
                                 language=language,
@@ -122,7 +119,7 @@ def language(language_key):
 
 @app.route('/rayons')
 def shelves():
-    shelves = Shelf.query.all()
+    shelves = Shelf.query.order_by(Shelf.shl_key).all()
     return render_sidebar_template('shelves.html', title='Rayons', shelves=shelves)
 
 @app.route('/a-propos')

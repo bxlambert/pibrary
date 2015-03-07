@@ -44,7 +44,7 @@
             {% endif %}
             <td>
                 {% for language in languages %}
-                <a href="{{ url_for('language', language_key=language.lng_label) }}">{{ language.lng_label }}</a>&nbsp;
+                <a href="{{ url_for('language', language_key=language.lng_key) }}">{{ language.lng_label }}</a>&nbsp;
                 {% endfor %}
             </td>
         </tr>
@@ -58,7 +58,7 @@
             <td>
                 {% for genre in genres %}
                 <span class="label label-primary">
-                    <a href="">{{ genre.gnr_label }}</a>
+                    <a href="{{ url_for('genre', genre_key=genre.gnr_key) }}">{{ genre.gnr_label }}</a>
                 </span>&nbsp;
                 {% endfor %}
             </td>
