@@ -5,7 +5,7 @@
 
     <ul class="text-16 gray-text">
         {% for genre in sidebar_genres %}
-        <li><a href="{{ url_for('genre', genre_key=genre.gnr_label) }}">{{ genre.gnr_label }}&nbsp;</a><small>({{ genre.count_genre }})</small></li>
+        <li><a href="{{ url_for('genre', genre_key=genre.gnr_key) }}">{{ genre.gnr_label }}</a>&nbsp;<small>({{ genre.count_genre }})</small></li>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -9,7 +9,7 @@ def get_languages_nb():
     return db.session.query(Language.lng_label, db.func.count(Language.lng_label).label('count_language')).join(Title, Language.lng_title).join(Book, Title.tit_book_main).group_by(Language.lng_label).all()
 
 def render_sidebar_template(template_name, **kwargs):
-    sidebar_genres = db.session.query(Genre.gnr_label, db.func.count(Genre.gnr_label).label('count_genre')).join(Title, Genre.title_genre).join(Book, Title.tit_book_main).group_by(Genre.gnr_label).all()
+    sidebar_genres = db.session.query(Genre.gnr_label, Genre.gnr_key, db.func.count(Genre.gnr_label).label('count_genre')).join(Title, Genre.title_genre).join(Book, Title.tit_book_main).group_by(Genre.gnr_label, Genre.gnr_key).order_by(Genre.gnr_key).all()
     return render_template(template_name, sidebar_genres=sidebar_genres, **kwargs)
 
 
@@ -96,7 +96,7 @@ def genres():
 
 @app.route('/genres/<genre_key>')
 def genre(genre_key):
-    genre = Genre.query.filter(Genre.gnr_label == genre_key).first_or_404()
+    genre = Genre.query.filter(Genre.gnr_key == genre_key).first_or_404()
     page_title = 'Genre: ' + genre.gnr_label.lower()
     books = Title.query.join(Book).join(Genre, Title.genre_title).filter(Title.tit_id == Book.boo_main_title, Genre.gnr_id == genre.gnr_id).order_by(Title.tit_title).all()
     return render_sidebar_template('genre.html',
@@ -107,12 +107,12 @@ def genre(genre_key):
 @app.route('/langues')
 def languages():
     languages = Language.query.order_by(Language.lng_label).all()
-    languages = db.session.query(Language.lng_label, db.func.count(Language.lng_label).label('count_language')).join(Title, Language.lng_title).join(Book, Title.tit_book_main).group_by(Language.lng_label).all()
+    languages = db.session.query(Language.lng_label, Language.lng_key, db.func.count(Language.lng_label).label('count_language')).join(Title, Language.lng_title).join(Book, Title.tit_book_main).group_by(Language.lng_label, Language.lng_key).all()
     return render_sidebar_template('languages.html', title='Langues', languages=languages)
 
 @app.route('/langues/<language_key>')
 def language(language_key):
-    language = Language.query.filter(Language.lng_label == language_key).first_or_404()
+    language = Language.query.filter(Language.lng_key == language_key).first_or_404()
     page_title = 'Langue: ' + language.lng_label.lower()
     books = Title.query.join(Book).join(Language).filter(Title.tit_id == Book.boo_main_title, Language.lng_id == language.lng_id).order_by(Title.tit_title).all()
     return render_sidebar_template('language.html',
