@@ -1,7 +1,62 @@
 {% extends "base.html" %}
 {% set nav_page = 'consulter' %}
 {% block content %}
-    <h2>{{ book.tit_title }}</h2>
+    <h2>{{ main_title.tit_title }}</h2>
+
+    <h3>Le livre</h3>
+    <table class="table table-condensed text-16 gray-text">
+        <tr>
+            {% if authors|length > 1 %}
+            <td>Auteurs</td>
+            {% else %}
+            <td>Auteur</td>
+            {% endif %}
+            <td>
+                {% for author in authors[:-1] %}
+                    <a href="{{ url_for('author', author_key=author.aut_key) }}">{{ author.aut_last_name }}</a>,
+                {% endfor %}
+                {% set author = authors[-1] %}
+                <a href="{{ url_for('author', author_key=author.aut_key) }}">{{ author.aut_last_name }}</a>
+            </td>
+        </tr>
+
+        <tr>
+            {% if languages|length > 1 %}
+            <td>Langues</td>
+            {% else %}
+            <td>Langue</td>
+            {% endif %}
+            <td>
+                {% for language in languages %}
+                <a href="{{ url_for('language', language_key=language.lng_key) }}">{{ language.lng_label }}</a>&nbsp;
+                {% endfor %}
+            </td>
+        </tr>
+
+        <tr>
+            {% if genres|length > 1 %}
+            <td>Genres</td>
+            {% else %}
+            <td>Genre</td>
+            {% endif %}
+            <td>
+                {% for genre in genres %}
+                <span class="label label-primary">
+                    <a href="{{ url_for('genre', genre_key=genre.gnr_key) }}">{{ genre.gnr_label }}</a>
+                </span>&nbsp;
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+
+    {% if subtitles|length > 1 %}
+    <h3>Titres <small>({{ subtitles|length }})</small></h3>
+    <ul>
+    {% for sub in subtitles %}
+        <li>{{ sub.tit_title }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
 
 
 {% endblock %}

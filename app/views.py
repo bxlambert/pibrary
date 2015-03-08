@@ -61,7 +61,7 @@ def author(author_key):
     languages = Language.query.join(Title).join(Author, Title.author_title).filter(Author.aut_id == author.aut_id).all()
     genres = Genre.query.join(Title, Genre.title_genre).join(Author, Title.author_title).filter(Author.aut_id == author.aut_id).all()
     if author is not None:
-        title = author.aut_last_name.capitalize()
+        title = 'Auteur: ' + author.aut_last_name.capitalize()
         return render_sidebar_template('author.html',
                                 title=title,
                                 author=author,
@@ -79,12 +79,20 @@ def books():
 
 @app.route('/livres/<book_key>')
 def book(book_key):
-    book = Title.query.join(Book).filter(Title.tit_id == Book.boo_main_title,
+    main_title = Title.query.join(Book).filter(Title.tit_id == Book.boo_main_title,
             Title.tit_key == book_key).order_by(Title.tit_key).first_or_404()
-    #authors = Author.query.join(Title, Author.title_author).filter(Author.aut_key == book.tit_author).all()
-    title = book.tit_title.capitalize()
-    return render_sidebar_template('book.html',
-                                book=book)
+    title = 'Livre: ' + main_title.tit_title
+    book = Book.query.join(Title, Book.title_book_main).filter(Title.tit_id == main_title.tit_id).first()
+    authors = Author.query.join(Title, Author.title_author).filter(Title.tit_id == main_title.tit_id).order_by(Author.aut_last_name).all()
+    languages = Language.query.join(Title).filter(Title.tit_id == main_title.tit_id).all()
+    genres = Genre.query.join(Title, Genre.title_genre).filter(Title.tit_id == main_title.tit_id).all()
+    subtitles = Title.query.join(Book, Title.book_title_sec).filter(Book.boo_id == book.boo_id, Title.tit_id != main_title.tit_id).order_by(Title.tit_key).all()
+    return render_sidebar_template('book.html', title=title,
+                                    main_title=main_title,
+                                    authors=authors,
+                                    languages=languages,
+                                    genres=genres,
+                                    subtitles=subtitles)
 
 @app.route('/genres')
 def genres():
