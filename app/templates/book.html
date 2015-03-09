@@ -33,6 +33,15 @@
             </td>
         </tr>
 
+        {% if shelf != None %}
+        <tr>
+            <td>Rayon</td>
+            <td>
+                <a href="{{ url_for('shelf', shelf_key=shelf.shl_key) }}">{{ shelf.shl_label }}</a>
+            </td>
+        </tr>
+        {% endif %}
+
         <tr>
             {% if genres|length > 1 %}
             <td>Genres</td>

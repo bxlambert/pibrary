@@ -85,12 +85,14 @@ def book(book_key):
     book = Book.query.join(Title, Book.title_book_main).filter(Title.tit_id == main_title.tit_id).first()
     authors = Author.query.join(Title, Author.title_author).filter(Title.tit_id == main_title.tit_id).order_by(Author.aut_last_name).all()
     languages = Language.query.join(Title).filter(Title.tit_id == main_title.tit_id).all()
+    shelf = Shelf.query.join(Copy).join(Book).join(Title).filter(Title.tit_id == main_title.tit_id).first()
     genres = Genre.query.join(Title, Genre.title_genre).filter(Title.tit_id == main_title.tit_id).all()
     subtitles = Title.query.join(Book, Title.book_title_sec).filter(Book.boo_id == book.boo_id, Title.tit_id != main_title.tit_id).order_by(Title.tit_key).all()
     return render_sidebar_template('book.html', title=title,
                                     main_title=main_title,
                                     authors=authors,
                                     languages=languages,
+                                    shelf=shelf,
                                     genres=genres,
                                     subtitles=subtitles)
 
