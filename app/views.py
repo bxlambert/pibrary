@@ -130,6 +130,13 @@ def shelves():
     shelves = Shelf.query.order_by(Shelf.shl_key).all()
     return render_sidebar_template('shelves.html', title='Rayons', shelves=shelves)
 
+@app.route('/rayons/<shelf_key>')
+def shelf(shelf_key):
+    shelf = Shelf.query.filter(Shelf.shl_key == shelf_key).first_or_404()
+    page_title = 'Rayon: ' + shelf.shl_label.upper()
+    books = Title.query.join(Book).join(Copy).join(Shelf).filter(Shelf.shl_key == shelf.shl_key).order_by(Title.tit_key).all()
+    return render_sidebar_template('shelf.html', title=page_title, shelf=shelf, books=books)
+
 @app.route('/a-propos')
 def about():
     return render_template('about.html', title='A propos')
