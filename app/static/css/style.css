@@ -1,4 +1,7 @@
-@import url('http://fonts.googleapis.com/css?family=Open+Sans');
+@font-face{
+    font-family: "open sans";
+    src: url('../fonts/OpenSans-Regular.ttf');
+}
 
 body{
     background-image: url("../img/livre-flou.jpg");
